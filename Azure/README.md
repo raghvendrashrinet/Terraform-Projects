@@ -113,7 +113,7 @@ terraform-azure-company/
     └── networking/
 ```
 ### Architecture
-![Architecture Diagram](Architecture%Diagram.png)
+![Architecture Diagram](ArchitectureDiagram.jpg)
 ##### 📋 Visual Blueprint (Text Table)
 Layer	Component	Purpose	Our Status
 Day 1	Remote State (Storage Account)	Team collaboration, locking	✅ Done
