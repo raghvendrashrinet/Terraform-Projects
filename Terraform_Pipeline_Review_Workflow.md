@@ -84,3 +84,37 @@ Only the reviewed plan is applied → reproducibility + audit trail.
 Approver → final sign‑off before apply.
 
 Apply → only the reviewed plan is executed.
+
+---
+###  swimlane diagram 
+```
+# 🏊 Swimlane Diagram: Terraform + Azure Review Workflow
+
+| Developer                          | Security Tools / Compliance         | Approver / Ops Lead                |
+|------------------------------------|-------------------------------------|------------------------------------|
+| `terraform plan -out=tfplan`       |                                     |                                    |
+| `terraform show -json tfplan.json` |                                     |                                    |
+| Push artifacts into PR             |                                     |                                    |
+|                                    | Run **tfsec** → NSG misconfig check |                                    |
+|                                    | Run **Checkov** → Storage encryption|                                    |
+|                                    | Run **Trivy** → AKS image scan      |                                    |
+|                                    | Run **Conftest/OPA** → policy rules |                                    |
+|                                    | Reports attached to PR              |                                    |
+| Review raw plan diff (`+`, `~`, `-`)|                                     |                                    |
+| Identify drift (e.g., LRS→GRS)     |                                     |                                    |
+| Identify unsafe NSG ingress        |                                     |                                    |
+| Cross‑check scan reports           |                                     |                                    |
+|                                    |                                     | Review plan + scan results         |
+|                                    |                                     | Approve or reject changes          |
+|                                    |                                     | If approved → `terraform apply`    |
+
+```
+
+* Developer lane → Generates plan + JSON, raises PR.
+* Security Tools lane → Automated scans consume tfplan.json and enforce Azure rules.
+* Approver lane → Reviews both the human‑readable plan diff and scan reports before sign‑off.
+
+This swimlane view makes it clear:
+ - `JSON (tfplan.json)` is for tools.
+ - `Raw plan diff` is for humans.
+ - Approver ensures both automation and human oversight are satisfied before terraform apply.
