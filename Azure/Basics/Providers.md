@@ -28,6 +28,14 @@ provider "azurerm" {
 Uses Kubernetes API Server to manage resources like Pods, Deployments, Services, etc.
 Authentication via kubeconfig
 ```hcl
+terraform {
+  required_providers {
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.0"
+    }
+  }
+}
 
 provider "kubernetes" {
   config_path = "~/.kube/config"
