@@ -61,8 +61,8 @@ Think of this as a `dry run` or a `blueprint` review.
 - What it shows:  
   🟢 + (Create): New resources that will be built.  
   🟡 ~ (Update): Existing resources that will be modified in place.  
-  🔴 - (Destroy): Existing resources that will be deleted.
-
+  🔴 - (Destroy): Existing resources that will be deleted.  
+      -/+ Replace → A resource will be destroyed and recreated (common when immutable fields change).
 
 
 ---
