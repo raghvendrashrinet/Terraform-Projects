@@ -34,6 +34,31 @@ resource "azurerm_storage_account" "example" {
   - Example: “Production VMs must use Standard_D2s_v3 size.”
 
   - Example: “No deletions of production resource groups allowed.”
+  >[!NOTE]
+  >Azure Policy and IaC Policy-as-Code (OPA/Checkov) they operate at completely different stages of the development lifecycle.
+  >Shift-Left (IaC Policies in Pipeline)
+  > Catches 90% of policy violations in the PR stage.
+  > Guardrails (Azure Policy in Cloud)
+  EG : policy checks that every created resource has a required CostCenter tag:
+```
+  package main
+
+# Deny creation if CostCenter tag is missing
+deny[msg] {
+    resource := input.resource_changes[_]
+    resource.change.actions[_] == "create"
+    not resource.change.after.tags.CostCenter
+    
+    msg := sprintf("Resource '%v' violates compliance: Missing required 'CostCenter' tag.", [resource.address])
+}
+```
+ Execution & Automated Guardrails
+ The policy scanner runs against the JSON plan output:
+```
+   conftest test tfplan.json --policy ./policies/
+```
+early detection and immediate action , Since in case of failure you need to address immediatley
+
 
 **Reports are attached to PR.**
 
