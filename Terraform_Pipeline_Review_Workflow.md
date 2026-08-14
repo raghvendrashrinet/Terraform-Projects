@@ -6,6 +6,10 @@ Generate plan artifact
 terraform plan -out=tfplan
 terraform show -json tfplan > tfplan.json
 ```
+or if actual format in terrform plan output format you need to see
+```
+terraform show tfplan
+```
 Push both tfplan and tfplan.json into the Pull Request (PR).
 
 Example resource:
