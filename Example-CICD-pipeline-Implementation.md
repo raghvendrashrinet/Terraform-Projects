@@ -137,6 +137,7 @@ jobs:
       - name: Run Security Scans (tfsec & Checkov)
         run: |
           # Run tfsec on the plan
+          # Mounts repo directory $(pwd) to /src inside the container,for docker to read files,download tfsec/tfsec and last /src is an asrg to tfsec
           docker run --rm -v $(pwd):/src tfsec/tfsec /src
 
           # Run Checkov on the JSON plan
