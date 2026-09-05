@@ -51,6 +51,7 @@ provider "registry.terraform.io/hashicorp/aws" {
 - ~>` 1.0: In your previous required_version context,`  
     * using ~> 1.0 would allow versions like 1.5.0 or 1.11.0,
     * but would completely block Terraform 2.0.0
+- >=1.0.0 allows major version upgrades through 2.x.x,3.x.x etc
 ---
 ### terraform plan (Preview step)
 Think of this as a `dry run` or a `blueprint` review.
