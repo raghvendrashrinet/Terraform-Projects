@@ -1,5 +1,5 @@
 ## Terraform Providers and API Details
-rraform uses providers to interact with various cloud platforms, SaaS services, and other APIs. A provider is a plugin that Terraform uses to manage infrastructure resources on a specific platform like AWS, Azure, GCP, Kubernetes, etc.
+Terraform uses providers to interact with various cloud platforms, SaaS services, and other APIs. A provider is a plugin that Terraform uses to manage infrastructure resources on a specific platform like AWS, Azure, GCP, Kubernetes, etc.
 
 Each provider communicates with the respective cloud provider’s API to perform operations like creating, updating, and deleting resources.
 
